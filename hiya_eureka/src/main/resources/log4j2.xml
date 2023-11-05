@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="off" monitorInterval="1800">
+
+    <properties>
+        <property name="LOG_DIR">/Users/hiya/log</property>
+        <property name="APP_FILE">hiya_eureka</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] - LOGID:%x{LOGID} %p {%t} %c:%L - %m%n"/>
+        </Console>
+
+        <RollingFile name="FileLog"
+                     fileName="${LOG_DIR}/${APP_FILE}/${APP_FILE}_${hostName}.log"
+                     filePattern="${LOG_DIR}/${APP_FILE}/$${date:yyyy-MM}/${APP_FILE}_${hostName}-%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] - LOGID:%X{LOGID} %p [%t] %c:%L - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="ErrorFileLog"
+                     fileName="${LOG_DIR}/${APP_FILE}/${APP_FILE}_${hostName}.log"
+                     filePattern="${LOG_DIR}/${APP_FILE}/$${date:yyyy-MM}/${APP_FILE}_${hostName}-%d{yyyy-MM-dd}.err">
+            <PatternLayout
+                    pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] - LOGID:%X{LOGID} %p [%t] %c:%L - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="me.hiyacate.eureka" level="INFO" additivity="true">
+            <AppenderRef ref="?FileLog"/>
+        </Logger>
+        <Logger name="org.apache" level="INFO" additivity="true">
+            <AppenderRef ref="FileLog"/>
+        </Logger>
+        <Logger name="com.netflix" level="INFO" additivity="true">
+            <AppenderRef ref="FileLog"/>
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="FileLog"/>
+        </Root>
+    </Loggers>
+    <loggers>
+        <logger name="me.hiyacate.eureka">
+            <level>DEBUG</level>
+        </logger>
+        <root level="INFO">
+            <appenderRef ref="Console"/>
+            <appenderRef ref="FileLog"/>
+            <appenderRef ref="ErrorFileLog"/>
+        </root>
+    </loggers>
+</Configuration>

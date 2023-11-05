@@ -1,0 +1,25 @@
+<assembly>
+    <!--配置添加到打包文件名的标识符，用来做后缀-->
+    <id>bin</id>
+    <!--配置打包文件格式，有zip、tar、tar.gz、tar.bz2、jar、war-->
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <!---->
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>hiya_eureka/</outputDirectory>
+            <destName>hiya_eureka.jar</destName>
+        </file>
+    </files>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>hiya_eureka/lib</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+</assembly>

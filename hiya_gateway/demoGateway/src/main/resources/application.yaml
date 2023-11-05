@@ -1,0 +1,21 @@
+server:
+  port: 10010
+
+spring:
+  application:
+    name: hiya_gateway
+  cloud:
+    gateway:
+      routes:
+        - id: hiya-demo
+          uri: lb://hiya-demo
+          predicates:
+            - Path=/demo/**
+          filters:
+            - StripPrefix=1
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
