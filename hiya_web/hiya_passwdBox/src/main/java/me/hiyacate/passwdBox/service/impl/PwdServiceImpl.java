@@ -28,4 +28,16 @@ public class PwdServiceImpl extends ServiceImpl<PwdMapper, Pwd> implements PwdSe
         R r = result?R.success():R.error();
         return r;
     }
+
+    @Override
+    public R delete(JSONObject request) {
+        Integer id = request.getInteger("id");
+        if(id==null){
+            return R.error("缺少删除主键");
+        }
+
+        boolean result = removeById(id);
+        R r = result?R.success():R.error("删除失败");
+        return r;
+    }
 }

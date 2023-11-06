@@ -1,5 +1,6 @@
 package me.hiyacate.passwdBox.domain;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -22,4 +23,7 @@ public class Pwd {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss:sss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss:sss")
     Date updateTime;
+
+    @TableLogic
+    Integer isDel;
 }

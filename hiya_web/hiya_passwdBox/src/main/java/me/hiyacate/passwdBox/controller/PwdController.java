@@ -17,9 +17,15 @@ public class PwdController {
     @Resource
     private PwdService pwdService;
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public R save(@RequestBody JSONObject request){
         R result = pwdService.save(request);
+        return result;
+    }
+
+    @PostMapping("/delete")
+    public R delete(@RequestBody JSONObject request){
+        R result = pwdService.delete(request);
         return result;
     }
 

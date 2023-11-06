@@ -25,4 +25,13 @@ public class R {
         r.setData(null);
         return r;
     }
+
+    public static R error(String message){
+        R r = new R();
+        r.setCode("400");
+        r.setMessage(message);
+        r.setData(null);
+        return r;
+    }
 }
+

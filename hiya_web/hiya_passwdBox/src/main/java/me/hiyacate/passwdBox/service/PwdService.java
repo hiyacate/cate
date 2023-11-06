@@ -7,4 +7,6 @@ import me.hiyacate.passwdBox.entity.R;
 
 public interface PwdService extends IService<Pwd> {
     R save(JSONObject request);
+
+    R delete(JSONObject request);
 }
