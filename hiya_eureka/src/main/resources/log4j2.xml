@@ -3,7 +3,7 @@
 <Configuration status="off" monitorInterval="1800">
 
     <properties>
-        <property name="LOG_DIR">/Users/hiya/log</property>
+        <property name="LOG_DIR">/home/hiya/log</property>
         <property name="APP_FILE">hiya_eureka</property>
     </properties>
 
