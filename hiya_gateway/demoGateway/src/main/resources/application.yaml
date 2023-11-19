@@ -13,6 +13,12 @@ spring:
             - Path=/demo/**
           filters:
             - StripPrefix=1
+        - id: hiya-passwdBox
+          uri: lb://hiya-passwdBox
+          predicates:
+            - Path=/passwdBox/**
+          filters:
+            - StripPrefix=1
 eureka:
   instance:
     hostname: localhost

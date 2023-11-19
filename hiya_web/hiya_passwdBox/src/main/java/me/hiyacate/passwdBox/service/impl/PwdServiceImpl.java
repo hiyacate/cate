@@ -1,6 +1,7 @@
 package me.hiyacate.passwdBox.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import me.hiyacate.passwdBox.domain.Pwd;
 import me.hiyacate.passwdBox.entity.R;
@@ -32,6 +33,10 @@ public class PwdServiceImpl extends ServiceImpl<PwdMapper, Pwd> implements PwdSe
     @Override
     public R delete(JSONObject request) {
         Integer id = request.getInteger("id");
+        Pwd passwd = getById(id);
+        if(passwd==null){
+            return R.error("根据id未查得要删除的内容");
+        }
         if(id==null){
             return R.error("缺少删除主键");
         }
